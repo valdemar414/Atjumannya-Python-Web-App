@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class PublicItem(db.Model):
-    id = db.Column(db.Integer, prinary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
     color = db.Column(db.String(80), unique=False, nullable=False)
 
