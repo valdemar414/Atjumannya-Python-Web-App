@@ -26,15 +26,7 @@ def create_item():
 
 @app.route("/list_items")
 def list_items():
-    items=PublicItem.query.all()
-    empty = False
-    if len(items) == 0:
-        empty = True
-    ctx = {
-        "items": items,
-        "empty": empty
-    }
-    return render_template("list_items.html", **ctx)
+    return render_template("list_items.html", items=PublicItem.query.all())
 
 @app.route("/delete/item/<id>", methods=["POST"])
 def delete_item(id):
