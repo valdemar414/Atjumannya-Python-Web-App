@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, PublicItem
+import json
 
 app = Flask(__name__, template_folder="templates")
+app.config.from_file("config.json", load=json.load)
+
 db.init_app(app)
 db.create_all(app=app)
 
