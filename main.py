@@ -5,9 +5,13 @@ app = Flask(__name__, template_folder="templates")
 db.init_app(app)
 db.create_all(app=app)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 @app.route("/")
 def index():
-    return render_template("index.html", items=PublicItem.query.all())
+    return render_template("index.html")
 
 @app.route("/create_item", methods=["GET", "POST"])
 def create_item():
