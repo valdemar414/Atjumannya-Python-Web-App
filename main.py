@@ -6,9 +6,9 @@ import json
 
 app = Flask(__name__, template_folder="templates")
 app.config.from_file("config.json", load=json.load)
-try:
-    app.config.from_file(os.environ.get("CONFIG_OVERRIDE"), load=json.load)
-except TypeError:
+if conf := os.environ.get("CONFIG_OVERRIDE"):
+    app.config.from_file(conf, load=json.load)
+else:
     app.logger.info("No override config was provided. Using default configuration")
 
 db.init_app(app)
