@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-from models import db, PublicItem
+from models import db
+from models.public_item import PublicItem
 import json
 
 app = Flask(__name__, template_folder="templates")
