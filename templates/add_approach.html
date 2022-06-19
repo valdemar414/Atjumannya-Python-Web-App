@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p><strong>Create object</strong></p>
+<form action="{{ url_for('add_approach')}}" method="post">
+	<label for="exercise">Exercise:</label><br>
+	<select id="exercise">
+		{% for exercise in exercises %}
+			<option value=””>{{exercise.name}}</option>
+		{% endfor %}
+	</select>
+
+	<label for="repetitions">Repetitions:</label><br>
+	<input type="number" id="repetitions" name="repetitions" value="0">
+
+	<label for="weight">Weight:</label><br>
+	<input type="number" id="weight" name="weight" value="0">
+	
+	<br><br>
+	<input type="submit" value="Create object">
+</form>
+{% endblock %}
