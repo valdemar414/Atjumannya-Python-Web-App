@@ -1,10 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import db
 from models.public_item import PublicItem
+import os
 import json
 
 app = Flask(__name__, template_folder="templates")
 app.config.from_file("config.json", load=json.load)
+try:
+    app.config.from_file(os.environ.get("CONFIG_OVERRIDE"), load=json.load)
+except TypeError:
+    app.logger.info("No override config was provided. Using default configuration")
 
 db.init_app(app)
 db.create_all(app=app)
